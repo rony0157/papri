@@ -45,43 +45,9 @@ function createFloatingHearts() {
 createFloatingHearts();
 
 // Screen Navigation & Elements
-const passwordScreen = document.getElementById('passwordScreen');
 const welcomeScreen = document.getElementById('welcomeScreen');
 const letterScreen = document.getElementById('letterScreen');
 const successScreen = document.getElementById('successScreen');
-
-const passInput = document.getElementById('passInput');
-const unlockBtn = document.getElementById('unlockBtn');
-const errorMsg = document.getElementById('errorMsg');
-
-// Password Lock Screen Logic
-function handleUnlock() {
-    const enteredPass = passInput.value.trim().toLowerCase();
-    const correctPasswords = ['papri', 'sorry', '143', 'love', 'পাপড়ি', 'সরি'];
-    
-    if (correctPasswords.includes(enteredPass)) {
-        // Correct password -> transition screen
-        passwordScreen.classList.remove('active');
-        welcomeScreen.classList.add('active');
-    } else {
-        // Incorrect password -> Shake card and show error
-        const lockCard = document.querySelector('.lock-card');
-        lockCard.classList.add('shake');
-        errorMsg.innerText = 'ভুল পাসওয়ার্ড! আবার চেষ্টা করো 🥺';
-        errorMsg.style.display = 'block';
-        
-        setTimeout(() => {
-            lockCard.classList.remove('shake');
-        }, 500);
-    }
-}
-
-unlockBtn.addEventListener('click', handleUnlock);
-passInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        handleUnlock();
-    }
-});
 
 const envelopeWrapper = document.getElementById('envelopeWrapper');
 const openBtn = document.getElementById('openBtn');
@@ -91,13 +57,13 @@ const yesBtn = document.getElementById('yesBtn');
 const noBtn = document.getElementById('noBtn');
 const restartBtn = document.getElementById('restartBtn');
 
-// Letter Content (in Bengali as requested, romantic and apologetic)
-const apologyLetter = `আমি খুব দুঃখিত, পাপড়ি... 🥺
-আমার কোনো কাজের মাধ্যমে যদি তুমি কষ্ট পেয়ে থাকো, তাহলে আমাকে ক্ষমা করে দিও। আমি জানি আমার কিছু আচরণ বা কথা তোমার মন খারাপের কারণ হয়েছে। কিন্তু বিশ্বাস করো, তোমাকে দুঃখ দেওয়া বা তোমার অভিমান বাড়ানোর কোনো ইচ্ছে আমার বিন্দুমাত্র ছিল না।
+// Letter Content (in Bengali, highly romantic, apologetic, and customized)
+const apologyLetter = `প্রিয় পাপড়ি, আমার লাল গোলাপ... 🌹🥺
+জানি আমার ওপর তোমার অনেক রাগ আর অভিমান জমে আছে। কিন্তু বিশ্বাস করো, তোমাকে কষ্ট দেওয়া বা তোমার চোখে জল আনার কোনো ইচ্ছে আমার কখনোই ছিল না। তুমি ছাড়া আমার এই ছোট্ট পৃথিবীটা একদম অর্থহীন। 
 
-তুমি রাগ করে থাকলে আমার একদম ভালো লাগে না। তোমার ওই সুন্দর হাসিটা আমার কাছে পৃথিবীর সবচেয়ে প্রিয় জিনিস। 
+তুমি রাগ করে থাকলে আমার দিনগুলো কেমন যেন ধূসর আর মেঘলা হয়ে যায়। তোমার ওই মিষ্টি মুখের এক চিলতে হাসি আমার কাছে হাজারটা গোলাপের চেয়েও সুন্দর। 
 
-অভিমান ভেঙে এবার একটু হেসে ফেলো প্লিজ? আমার ভুলগুলোর জন্য আমি সত্যিই লজ্জিত আর ক্ষমাপ্রার্থী। আই অ্যাম সো সরি... ❤️`;
+আমি জানি আমার কিছু আচরণ ভুল ছিল, আর তার জন্য আমি হাজার বার সরি বলতেও রাজি! আমার ওপর থেকে তোমার অভিমানের মেঘ সরিয়ে দাও প্লিজ? চল না, আবার আগের মতো এক সাথে হাত মিলিয়ে হেসে উঠি! আই অ্যাম সো সরি, লাভ... ❤️🌸`;
 
 // Typing effect variables
 let typingIdx = 0;
@@ -222,12 +188,8 @@ restartBtn.addEventListener('click', () => {
     sorryCount = 0;
     sorryCountEl.innerText = toBengaliNumber(0);
     
-    // Reset password input
-    passInput.value = '';
-    errorMsg.style.display = 'none';
-    
     successScreen.classList.remove('active');
-    passwordScreen.classList.add('active');
+    welcomeScreen.classList.add('active');
 });
 
 // Sorry Rose & Sorry Rain Logic
